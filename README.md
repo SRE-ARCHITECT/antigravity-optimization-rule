@@ -14,12 +14,22 @@ Se você usa o Google Antigravity (ou qualquer ambiente baseado em agentes autô
 
 ## ⚙️ Como instalar no seu Antigravity IDE
 
-É super simples! Como essa é uma **Global Rule**, ela será aplicada a *todos* os seus projetos.
+Você tem duas formas de instalar essa regra: de forma **Automatizada** (recomendada) ou **Manual**.
 
+### Instalação Automatizada (via Chat) 🤖✨
+Você pode simplesmente pedir para o próprio Antigravity baixar e instalar para você!
+Basta copiar o link abaixo e colar no chat do IDE do Antigravity dizendo:
+
+> *"Baixe e instale essa regra global de otimização na pasta correta: https://github.com/SRE-ARCHITECT/antigravity-optimization-rule"*
+
+Ele vai clonar o repositório e posicionar o arquivo `GEMINI.md` no local exato de regras globais sozinho.
+
+### Instalação Manual 🛠️
 1. Baixe o arquivo `GEMINI.md` deste repositório.
 2. Mova o arquivo para a raiz global de customizações do seu Antigravity:
    - **Windows:** `C:\Users\<Seu_Usuario>\.gemini\config\GEMINI.md`
    - **Linux/Mac:** `~/.gemini/config/GEMINI.md`
+
 3. Pronto! O Antigravity vai ler essa regra em todo novo projeto ou projetos existentes automaticamente. 🛸
 
 ## 🤝 Fortaleça o Projeto! (Deixe sua Estrela ⭐)
