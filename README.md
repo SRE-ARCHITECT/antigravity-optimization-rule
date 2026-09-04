@@ -35,10 +35,7 @@ Ele vai clonar o repositório e posicionar o arquivo `GEMINI.md` no local exato 
 ## 🤝 Fortaleça o Projeto! (Deixe sua Estrela ⭐)
 
 Se essa regra salvou seu workflow, acelerou suas entregas ou evitou que seu PC travasse durante o código, **dá uma estrela ⭐️ no repositório!** Isso ajuda demais a divulgar a ferramenta para mais devs e fortalecer a comunidade de vibecoders.
-
-### Tags / Divulgação
-Espalhe a palavra nas redes sociais:
-`#Vibecoding` `#AI` `#AntigravityIDE` `#Productivity` `#Dev` `#OpenSource` `#TokenOptimization` `#CleanCode` `#Brasil`
-
 ---
 *Feito de dev para dev. Vai pra cima! 🚀*
+
+Outras ferramentas em webappdesigner.com.br
