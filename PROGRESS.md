@@ -7,12 +7,12 @@
   - Otimizações para Windows (I/O contido e PowerShell limpo).
   - Inspeção inteligente de logs (locais, repositórios ou servidores remotos).
   - Protocolo de continuidade e handoff de sessões via `PROGRESS.md`.
-- [x] Atualização completa da documentação `README.md` com as novas diretrizes e créditos.
-- [x] Sincronização via Git (rebase e push) diretamente para a branch `master` do repositório remoto.
+- [x] Inclusão da diretriz de Limpeza de Processos e Recursos: encerramento automático de servidores de teste/desenvolvimento (Vite, Next.js, Uvicorn, watchers) ao concluir tarefas para liberação de portas, CPU e memória.
+- [x] Atualização da documentação `README.md` e sincronização do repositório.
 
 ## Estado Atual
-- Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` sincronizado e 100% atualizado.
-- Regra global ativa no ambiente do usuário.
+- Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` pronto e atualizado.
+- Regra global ativa no ambiente do usuário sem expor credenciais locais.
 
 ## Próximos Passos
 - [ ] Divulgar a v2.0 para a comunidade dev/vibecoders.

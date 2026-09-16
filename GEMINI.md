@@ -14,6 +14,7 @@
 - WINDOWS I/O: Ao buscar arquivos ou textos, limite a busca à pasta do projeto atual e utilize filtros de extensão específicos, evitando varrer pastas externas ou raízes de disco.
 - POWERSHELL LIMPO: Evite encadear comandos shell pesados ou deixar processos contínuos (watchers/daemons) rodando em background no Windows.
 - RESPEITO AO CONTEXTO E LOGS: Ignore arquivos de build, caches, binários e mapas (.map). Para arquivos de log (.log) locais, de repositórios ou servidores, sugira e inspecione apenas os trechos estritamente relevantes quando necessário para diagnosticar erros ou se solicitado pelo usuário.
+- LIMPEZA DE PROCESSOS E RECURSOS: Ao concluir testes, validações ou ao finalizar a sessão, garanta o encerramento de servidores de desenvolvimento/teste e processos em background (Vite, Next.js, Uvicorn, watchers, etc.) para liberar portas, CPU e RAM do host.
 
 ## Continuidade de Sessões (Handoff)
 - Ao concluir entregas ou sob solicitação do usuário, gere ou atualize um arquivo cirúrgico `PROGRESS.md` na raiz do projeto contendo: O que foi feito, Estado atual e Próximos passos.
