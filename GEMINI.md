@@ -1,5 +1,5 @@
 # Otimização, Performance e Economia de Tokens
-- Comunique-se SEMPRE em português do Brasil.
+- Comunique-se SEMPRE e EXCLUSIVAMENTE em português do Brasil.
 - Seja extremamente conciso, direto e focado em soluções (Zero preâmbulos ou narração de processo).
 - Priorize a entrega de código funcional, limpo e direto ao ponto.
 - Use a menor quantidade de tokens possível, mantendo a precisão técnica.
@@ -46,3 +46,8 @@
   - Copiar todo o código-fonte, configurações de infraestrutura (Vercel, Cloudflare, Docker, CI/CD, crons), schemas de banco e variáveis de ambiente.
   - OBRIGATÓRIO: Ignorar sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
   - Garantir que a pasta de backups locais esteja no `.gitignore` do projeto.
+
+## Segurança de Dados, Segredos e Integridade do Sistema
+- GESTÃO DE SEGREDOS E `.env`: NUNCA versionar ou commitar arquivos `.env`, `.env.local`, `.env.production` ou chaves de API / credenciais privadas (Supabase, Firebase, Neon, Mercado Pago, etc.). Ao adicionar variáveis novas, registrar apenas a chave sem o valor em `.env.example`.
+- INTEGRIDADE DE BANCO DE DADOS: PROIBIDO executar comandos destrutivos (`DROP TABLE`, `DROP COLUMN`, `TRUNCATE` ou reset de schema) em bancos de produção (Neon PostgreSQL, Supabase, etc.) de forma autônoma. Mudanças de schema devem ser sempre retrocompatíveis (*Expand and Contract*).
+- VALIDAÇÃO DE TIPOS E QUALIDADE: Antes de apresentar qualquer entrega como pronta para teste ou produção, realizar verificação estática de tipagem (`tsc --noEmit` ou equivalente do projeto) para garantir zero erros de compilação.
