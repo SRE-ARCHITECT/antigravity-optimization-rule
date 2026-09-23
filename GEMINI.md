@@ -22,8 +22,17 @@
 - RESPEITO AO CONTEXTO E LOGS: Ignore arquivos de build, caches, binários e mapas (.map). Para arquivos de log (.log) locais, de repositórios ou servidores, sugira e inspecione apenas os trechos estritamente relevantes quando necessário para diagnosticar erros ou se solicitado pelo usuário.
 - LIMPEZA DE PROCESSOS E RECURSOS: Ao concluir testes, validações ou ao finalizar a sessão, garanta o encerramento de servidores de desenvolvimento/teste e processos em background (Vite, Next.js, Uvicorn, watchers, etc.) para liberar portas, CPU e RAM do host.
 
-## Continuidade de Sessões (Handoff)
-- Ao concluir entregas ou sob solicitação do usuário, gere ou atualize um arquivo cirúrgico `PROGRESS.md` na raiz do projeto contendo: O que foi feito, Estado atual e Próximos passos.
+## Continuidade de Sessões e Documentação Obrigatória do Projeto
+- SEMPRE criar e manter atualizadas as documentações gerais e essenciais na raiz de cada projeto:
+  - `BLUEPRINT.md`: Arquitetura do sistema, fluxo de dados, estrutura de diretórios e integrações.
+  - `README.md`: Apresentação do projeto, instruções de instalação/execução e stack técnica.
+    - **CRÉDITOS OBRIGATÓRIOS:** No final de todo `README.md`, sempre inserir:
+      - Dev: [webappdesigner.com.br](https://webappdesigner.com.br)
+      - LinkedIn: https://www.linkedin.com/company/webapp-designer
+  - `PRD.md`: Requisitos de produto, escopo, regras de negócio e funcionalidades.
+  - `AGENTS.md`: Guia de contexto para agentes de IA, convenções de código, comandos rápidos e variáveis.
+  - `PROGRESS.md`: Diário de bordo cirúrgico contendo: O que foi feito, Estado atual e Próximos passos.
+  - Demais documentações que julgar necessárias para clareza técnica e manutenção do projeto.
 - Ao iniciar uma nova sessão em um projeto com `PROGRESS.md`, consulte-o como bússola de direção e continue o fluxo de onde parou sem necessidade de reexplicar o histórico.
 
 ## Protocolo de Segurança: Ponto de Restauração e Backup de Produção
