@@ -35,7 +35,12 @@
   - Demais documentações que julgar necessárias para clareza técnica e manutenção do projeto.
 - Ao iniciar uma nova sessão em um projeto com `PROGRESS.md`, consulte-o como bússola de direção e continue o fluxo de onde parou sem necessidade de reexplicar o histórico.
 
-## Protocolo de Segurança: Ponto de Restauração e Backup de Produção
+## Protocolo de Segurança: Ponto de Restauração e Backup de Produção (Obrigatório Pré-Push)
+- FLUXO OBRIGATÓRIO PRÉ-PUSH (AO APROVAR PUSH):
+  - Sempre que o usuário autorizar/aprovar o push, ANTES de executá-lo, é obrigatório:
+    1. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
+    2. **Cópia Local de Segurança**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), ignorando `node_modules`, `.next`, caches e logs, assegurando que a pasta esteja no `.gitignore`.
+    3. **Prosseguimento**: Somente após a conclusão com sucesso da tag/rollback no GitHub e do backup local, prosseguir com o push, deploy e atualizações gerais.
 - ENTRADA NA SESSÃO (PROJETO EM PRODUÇÃO):
   - Ao iniciar qualquer projeto, verificar se o repositório possui branch/deploy de produção ativo.
   - Perguntar explicitamente ao usuário se deseja criar uma cópia/branch de rollback ou tag de rollback da versão ativa no repositório.

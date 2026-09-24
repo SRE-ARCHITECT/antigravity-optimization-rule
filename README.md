@@ -18,6 +18,7 @@ Se você usa o Google Antigravity (ou qualquer ambiente baseado em agentes autô
 - **Inspeção Inteligente de Logs**: Ignora caches e mapas (.map) pesados, permitindo que a IA sugira e leia apenas trechos cirúrgicos de logs em projetos, repositórios ou servidores remotos.
 - **Limpeza de Processos e Recursos**: Garante a finalização de servidores locais de teste/desenvolvimento (Vite, Next.js, Uvicorn, watchers) ao concluir tarefas, liberando portas, CPU e RAM do host.
 - **Continuidade & Handoff (`PROGRESS.md`)**: Padroniza a criação de resumos leves de progresso para trocar de chat sem perder o fio da meada ou gastar tokens com históricos gigantes.
+- **Protocolo de Segurança Pré-Push**: Blindagem obrigatória pré-push com geração de tag e branch de rollback no GitHub e backup local antes de qualquer deploy ou atualização.
 
 ---
 

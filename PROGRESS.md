@@ -8,6 +8,7 @@
   - Inspeção inteligente de logs (locais, repositórios ou servidores remotos).
   - Protocolo de continuidade e handoff de sessões via `PROGRESS.md`.
 - [x] Inclusão da diretriz de Limpeza de Processos e Recursos: encerramento automático de servidores de teste/desenvolvimento (Vite, Next.js, Uvicorn, watchers) ao concluir tarefas para liberação de portas, CPU e memória.
+- [x] Inclusão do Protocolo de Segurança Pré-Push obrigatório: criação de tag e branch de rollback da versão ativa no GitHub + backup local antes de qualquer push, deploy ou atualização.
 - [x] Atualização da documentação `README.md` e sincronização do repositório.
 
 ## Estado Atual
