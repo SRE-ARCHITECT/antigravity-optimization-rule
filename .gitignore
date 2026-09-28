@@ -1,0 +1,13 @@
+# Backups locais de produção
+backup-producao/
+
+# Segredos e variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Temporários e caches
+*.tmp
+scratch/
+.DS_Store
+Thumbs.db

@@ -1,4 +1,4 @@
-# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.0)
+# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.5)
 
 Bem-vindo à **Antigravity Optimization Rule**! Uma regra de sistema (Global Rule) desenhada cirurgicamente para maximizar a eficiência, reduzir drasticamente o consumo de tokens e focar 100% na entrega de código de alta performance em português do Brasil, mantendo seu hardware leve e seu workflow fluindo sem travamentos.
 
@@ -15,10 +15,11 @@ Se você usa o Google Antigravity (ou qualquer ambiente baseado em agentes autô
 - **Edições Cirúrgicas**: Proíbe a reescrita de arquivos inteiros para alterações pontuais, economizando milhares de tokens por turno via diffs/chunks.
 - **Anti-Daemon / Anti-Travamento (Android & Builds)**: Bloqueia a execução autônoma de comandos pesados de compilação ou inicialização de Daemons (Gradle, npm, pip, cargo) sem autorização expressa.
 - **Otimização Windows (I/O & PowerShell)**: Limita buscas de arquivos à raiz do projeto com filtros estreitos e evita scripts concorrentes que pesam no PowerShell e no disco NTFS.
-- **Inspeção Inteligente de Logs**: Ignora caches e mapas (.map) pesados, permitindo que a IA sugira e leia apenas trechos cirúrgicos de logs em projetos, repositórios ou servidores remotos.
-- **Limpeza de Processos e Recursos**: Garante a finalização de servidores locais de teste/desenvolvimento (Vite, Next.js, Uvicorn, watchers) ao concluir tarefas, liberando portas, CPU e RAM do host.
-- **Continuidade & Handoff (`PROGRESS.md`)**: Padroniza a criação de resumos leves de progresso para trocar de chat sem perder o fio da meada ou gastar tokens com históricos gigantes.
-- **Protocolo de Segurança Pré-Push**: Blindagem obrigatória pré-push com geração de tag e branch de rollback no GitHub e backup local antes de qualquer deploy ou atualização.
+- **Engenharia Limpa (SRP 300 Linhas)**: Arquivos limitados a 300 linhas, modularizando em hooks/services, proibindo engolir exceções (`except: pass`) e preservando lockfiles.
+- **Padronização Temporal Brasil (UTC-3)**: Armazenamento em UTC e exibição/agendamento no fuso de Brasília (`America/Sao_Paulo`).
+- **Continuidade & Documentação Obrigatória**: Padronização de `BLUEPRINT.md`, `README.md` (com créditos obrigatórios), `PRD.md`, `AGENTS.md` e `PROGRESS.md`.
+- **Protocolo de Segurança Pré-Push com Retenção FIFO**: Tag de rollback no GitHub (`rollback-prod-YYYYMMDD-HHmm`) e backup local com `.env` sob `.gitignore`, mantendo sempre os 5 snapshots mais recentes.
+- **Blindagem de Pagamentos & Banco de Dados**: Webhooks com verificação de assinatura e trava de idempotência; integridade de BD via *Expand and Contract*.
 
 ---
 
