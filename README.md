@@ -1,4 +1,4 @@
-# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.6)
+# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.7)
 
 Bem-vindo à **Antigravity Optimization Rule**! Uma regra de sistema (Global Rule) desenhada cirurgicamente para maximizar a eficiência, reduzir drasticamente o consumo de tokens e focar 100% na entrega de código de alta performance em português do Brasil, mantendo seu hardware leve e seu workflow fluindo sem travamentos.
 
@@ -12,39 +12,25 @@ Se você usa o Google Antigravity (ou qualquer ambiente baseado em agentes autô
 
 - **Vibecoding Friendly**: Assume uso concorrente (YouTube, Spotify, múltiplas abas) e força concorrência baixa sem picos repentinos de CPU/RAM.
 - **Zero Enrolação**: Proíbe preâmbulos e narrações desnecessárias; vai direto ao código funcional.
-- **Edições Cirúrgicas**: Proíbe a reescrita de arquivos inteiros para alterações pontuais, economizando milhares de tokens por turno via diffs/chunks.
-- **Anti-Daemon / Anti-Travamento (Android & Builds)**: Bloqueia a execução autônoma de comandos pesados de compilação ou inicialização de Daemons (Gradle, npm, pip, cargo) sem autorização expressa.
-- **Otimização Windows (I/O & PowerShell)**: Limita buscas de arquivos à raiz do projeto com filtros estreitos e evita scripts concorrentes que pesam no PowerShell e no disco NTFS.
-- **Engenharia Limpa (SRP 300 Linhas)**: Arquivos limitados a 300 linhas, modularizando em hooks/services, proibindo engolir exceções (`except: pass` ou `catch` vazio) e preservando lockfiles.
-- **Padronização Temporal Brasil (UTC-3)**: Armazenamento em UTC e exibição/agendamento no fuso de Brasília (`America/Sao_Paulo` / UTC-3).
-- **Continuidade & Documentação Obrigatória**: Padronização de `BLUEPRINT.md`, `README.md` (com créditos obrigatórios), `PRD.md`, `AGENTS.md` e `PROGRESS.md`.
-- **Protocolo de Segurança Pré-Push com Retenção FIFO**: Tag de rollback no GitHub (`rollback-prod-YYYYMMDD-HHmm`) e backup local com `.env` sob `.gitignore`, mantendo sempre os 5 snapshots mais recentes.
-- **Blindagem de Pagamentos & Banco de Dados**: Webhooks com verificação de assinatura e trava de idempotência; integridade de BD via *Expand and Contract*.
-- **Protocolo SEO, GEO, AEO & Google Search Console**: Checklist obrigatório pré-push para Rich Results (Products, Videos, FAQs), conformidade estrita Schema.org com DOM, manifesto de IA (`llms.txt`), liberação de robôs de IA generativa e Favicons oficiais multi-resolução.
+- **Edições Cirúrgicas**: Proíbe reescritas de arquivos inteiros — prioriza diffs por blocos e economiza até 80% dos seus tokens por requisição.
+- **Governança de Modelos de IA e Zero 404/429**: Proíbe modelos obsoletos/alucinados, exige teste real de catálogo de API, arquitetura de fallback em cascata, controle rigoroso de OTPM/TPM e timeouts defensivos em Serverless.
+- **Blindagem Serverless & Banco de Dados**: Singleton e adaptadores de pooling (Neon/Supabase) para evitar exaustão de conexões, timeouts defensivos de 8s contra erro 504 e higiene de payloads de áudio/LGPD.
+- **SEO & Search Console Impecável**: 100% alinhado com Google Search Central e Schema.org (sincronia DOM x Schema, merchant listings, vídeos e crawlers de IA).
+- **Segurança Blindada Pré-Push**: Exige rollback no GitHub e backup snapshot local com política de retenção FIFO dos últimos 5 backups antes de qualquer envio.
 
 ---
 
-## ⚙️ Como instalar no seu Antigravity IDE
+## 📦 Como Instalar no Antigravity
 
-Você tem duas formas de instalar essa regra: de forma **Manual** (recomendada) ou **Automatizada**.
+Copie o conteúdo do arquivo [`GEMINI.md`](GEMINI.md) para a raiz do seu diretório de regras globais do Antigravity:
 
-### Instalação Manual 🛠️
-1. Abra ou crie o arquivo `GEMINI.md` no caminho global de customizações:
-   - **Windows:** `C:\Users\<Seu_Usuario>\.gemini\config\GEMINI.md`
-   - **Linux/Mac:** `~/.gemini/config/GEMINI.md`
-2. Copie e cole o conteúdo do arquivo [`GEMINI.md`](./GEMINI.md) deste repositório.
-3. Salve o arquivo. O Antigravity passará a aplicar as regras instantaneamente em todas as sessões! 🛸
-
-*(Opcional: Você também pode colar este arquivo diretamente na raiz de qualquer projeto como `GEMINI.md` para regras específicas do repositório).*
-
-### Instalação Automatizada (via Chat) 🤖✨
-Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
-
-> *"Atualize minha regra global de otimização a partir do repositório: https://github.com/SRE-ARCHITECT/antigravity-optimization-rule"*
+```plaintext
+C:\Users\<SEU_USUARIO>\.gemini\config\rules\GEMINI.md
+```
 
 ---
 
-## 📋 Conteúdo da Regra (`GEMINI.md`)
+## 📜 Conteúdo Oficial da Regra (v2.7)
 
 ```markdown
 # Diretrizes Gerais, Protocolo Operacional e Governança de IA (GEMINI.md)
@@ -80,6 +66,7 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
 - INTEGRIDADE DE DEPENDÊNCIAS: PROIBIDO alterar lockfiles (`package-lock.json`, `poetry.lock`, `requirements.txt`) adicionando pacotes desnecessários ou versões incompatíveis sem consulta prévia. Priorizar bibliotecas nativas antes de instalar novos pacotes de terceiros.
 - OBSERVABILIDADE E TRATAMENTO DE ERROS: Expressamente **PROIBIDO** engolir exceções com `except: pass` ou `catch (e) {}` vazios. Todo bloco de erro deve, obrigatoriamente, registrar log contextual com nível `logger.warning` ou `logger.error`.
 - PADRONIZAÇÃO TEMPORAL BRASIL (UTC-3): Armazenamento em banco de dados e logs sempre em **UTC** (`TIMESTAMPTZ` / ISO 8601). Exibições, relatórios e agendamento de crons devem obrigatoriamente converter explicitamente para o fuso de Brasília (`America/Sao_Paulo` / UTC-3).
+- TIMEOUTS DEFENSIVOS EM APIS SERVERLESS: Toda chamada externa a serviços de terceiros (APIs de IA, gateways de pagamento, webhooks ou microsserviços) disparada a partir de Edge/Serverless Functions (Next.js, Vercel, Cloudflare Workers) DEVE implementar obrigatoriamente timeout defensivo (ex: `AbortSignal.timeout(8000)` ou wrapper equivalente de 8s). Isso impede que a função trave até o teto da plataforma (10s a 15s) e retorne erro 504 Gateway Timeout, acionando em tempo hábil o fluxo de fallback ou resposta amigável ao usuário.
 
 ## 5. Continuidade de Sessões e Documentação Obrigatória do Projeto
 - SEMPRE criar e manter atualizadas as documentações gerais e essenciais na raiz de cada projeto:
@@ -98,12 +85,12 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
 - FLUXO OBRIGATÓRIO PRÉ-PUSH (AO APROVAR PUSH):
   - Sempre que o usuário autorizar/aprovar o push, ANTES de executá-lo, é obrigatório:
     1. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
-    2. **Sincronização com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) geraram commits automáticos de estado no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git rebase origin/<branch>` antes de prosseguir.
-    2. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
-    3. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
-    4. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
-    5. **Política de Retenção de Snapshots (Rolling Backups)**: Manter sempre no máximo os **5 snapshots mais recentes** em `backup-producao/`. Qualquer snapshot mais antigo que o 5º deve ser automaticamente excluído para evitar acúmulo de disco e rotação de credenciais.
-    6. **Prosseguimento**: Somente após a conclusão com sucesso da tag/rollback no GitHub e do backup local com a política de retenção aplicada, prosseguir com o push, deploy e atualizações gerais.
+    2. **Sincronização Obrigatória com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) geraram commits automáticos de estado no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git rebase origin/<branch>` antes de prosseguir.
+    3. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
+    4. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
+    5. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
+    6. **Política de Retenção de Snapshots (Rolling Backups)**: Manter sempre no máximo os **5 snapshots mais recentes** em `backup-producao/`. Qualquer snapshot mais antigo que o 5º deve ser automaticamente excluído para evitar acúmulo de disco e rotação de credenciais.
+    7. **Prosseguimento**: Somente após a conclusão com sucesso da tag/rollback no GitHub e do backup local com a política de retenção aplicada, prosseguir com o push, deploy e atualizações gerais.
 
 - ENTRADA NA SESSÃO (PROJETO EM PRODUÇÃO):
   - Ao iniciar qualquer projeto, verificar se o repositório possui branch/deploy de produção ativo.
@@ -122,6 +109,8 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
 - GESTÃO DE SEGREDOS E `.env`: NUNCA versionar ou commitar arquivos `.env`, `.env.local`, `.env.production` ou chaves de API / credenciais privadas (Supabase, Firebase, Neon, Mercado Pago, etc.) no Git. Ao adicionar variáveis novas, registrar apenas a chave sem o valor em `.env.example`.
 - BLINDAGEM DE PAGAMENTOS E WEBHOOKS: Todo endpoint de webhook financeiro (Mercado Pago, Stripe, Asaas) deve obrigatoriamente validar a assinatura criptográfica (`x-signature` ou token secreto) e implementar trava estrita de idempotência no banco de dados para evitar cobranças ou liberações duplicadas.
 - INTEGRIDADE DE BANCO DE DADOS (EXPAND AND CONTRACT): PROIBIDO executar comandos destrutivos (`DROP TABLE`, `DROP COLUMN`, `TRUNCATE` ou reset de schema) em bancos de produção (Neon PostgreSQL, Supabase, etc.) de forma autônoma. Mudanças de schema devem ser sempre retrocompatíveis: colunas novas devem ser criadas inicialmente como `NULLABLE` ou com `DEFAULT` seguro.
+- SINGLETON E POOLING EM BANCOS SERVERLESS: Conexões com PostgreSQL Serverless (Neon, Supabase) em ambientes Next.js / Serverless devem obrigatoriamente reutilizar instâncias globais via padrão Singleton e adaptadores de pooling (Neon HTTP Pooler / WebSocket Pooler / Supabase Transaction Pooler na porta 6543), sendo expressamente PROIBIDO abrir novas conexões ou pools crus a cada ciclo de execução de rota de API, evitando o esgotamento de conexões (*connection pool exhaustion*).
+- HIGIENE DE PAYLOADS, TRANSCRIÇÕES E LGPD: Expressamente PROIBIDO armazenar arquivos de mídia brutos ou áudios pesados codificados em Base64 diretamente em colunas de bancos relacionais de chat/leads. Áudios recebidos devem ser consumidos em memória ou buffer efêmero apenas para transcrição (STT), persistindo no banco exclusivamente o texto transcrito e metadados contextuais estritamente necessários, respeitando os princípios de minimização de dados da LGPD.
 - VALIDAÇÃO DE TIPOS E QUALIDADE: Antes de apresentar qualquer entrega como pronta para teste ou produção, realizar verificação estática de tipagem (`tsc --noEmit`, `py_compile` ou equivalente do projeto) para garantir zero erros de compilação.
 - PADRÃO PARA VÍDEOS CURTOS (SHORTS/REELS): Em automações de marketing/vídeo, assegurar proporção estrita 9:16 (1080x1920) e duração contida. PROIBIDO injetar thumbnails horizontais 16:9 via API em vídeos verticais para não desqualificá-los do carrossel nativo de Shorts/Reels.
 
@@ -159,6 +148,14 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
   9. **Core Web Vitals & SXO (Search Experience):**
      - Elemento LCP com `fetchpriority="high"` e dimensões fixas (`width`/`height`) para eliminar CLS.
      - Scripts de monetização, banners ou iframes pesados devem carregar estritamente de forma assíncrona ou via `IntersectionObserver` postergado, preservando a métrica INP (Interaction to Next Paint).
+
+## 9. Governança, Validação Ativa e Resiliência de Modelos de IA
+- AUDITORIA ATIVA DE MODELOS (ZERO MODELOS DESCONTINUADOS): Ao auditar, refatorar ou inicializar qualquer projeto que consuma APIs de IA generativa (Google Gemini, Groq, OpenAI, Anthropic, OpenRouter, xAI), é OBRIGATÓRIO verificar e validar se os identificadores de modelos (ex: `model: ...`) no código continuam ativos, funcionais e oficialmente suportados pelos provedores. É expressamente PROIBIDO manter identificadores obsoletos, descontinuados ou alucinados.
+- TESTE REAL DE CONECTIVIDADE E CATÁLOGO: Antes de concluir a auditoria, entrega ou homologação de um projeto com IA, executar validação real contra as APIs ativas (consultando o catálogo oficial de modelos ou disparando prompt de teste) para assegurar ausência de erros 404 (modelo inexistente), 429 (estouro de taxa OTPM/TPM) ou 503 (indisponibilidade temporária de capacidade).
+- PIPELINE DE FALLBACK MULTI-PROVEDOR OBRIGATÓRIO: Qualquer assistente conversacional, concierge ou motor de inferência analítica em produção deve implementar arquitetura de fallback em cascata (ex: Provedor Primário ➔ Provedor Secundário ➔ Provedor de Contingência), garantindo que picos de carga ou oscilações de serviço não interrompam o fluxo do usuário final.
+- BLINDAGEM DE LIMITES E TOKENS (OTPM / TPM): Sempre declarar travas defensivas de `max_tokens`, parâmetros de `temperature` calibrados e timeouts em chamadas de API, impedindo que respostas verbosas excedam cotas por minuto (*Output Tokens Per Minute*) em planos gratuitos, básicos ou sob demanda.
+- HIGIENE DE PERSONAS E BLACKLIST EM AGENTES CONVERSACIONAIS: Toda persona de IA conversacional (ex: Dra. Manu) deve ter suas regras estritas (limite de frases, tom acolhedor, blacklist de termos técnicos/jurídicos proibidos e linguagem de estimativa aproximada) testadas com perguntas reais para assegurar 100% de conformidade antes de qualquer publicação ou deploy.
+- OBSERVABILIDADE E RESGUARDO DE CREDENCIAIS DE IA: Registrar logs contextuais contendo latência da requisição, provedor efetivo de resolução e taxa de sucesso do fallback, sendo expressamente PROIBIDO exibir chaves de API, tokens de autorização ou dados pessoais em logs de erro.
 ```
 
 ---
