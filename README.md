@@ -1,4 +1,4 @@
-# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.5)
+# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.6)
 
 Bem-vindo à **Antigravity Optimization Rule**! Uma regra de sistema (Global Rule) desenhada cirurgicamente para maximizar a eficiência, reduzir drasticamente o consumo de tokens e focar 100% na entrega de código de alta performance em português do Brasil, mantendo seu hardware leve e seu workflow fluindo sem travamentos.
 
@@ -20,6 +20,7 @@ Se você usa o Google Antigravity (ou qualquer ambiente baseado em agentes autô
 - **Continuidade & Documentação Obrigatória**: Padronização de `BLUEPRINT.md`, `README.md` (com créditos obrigatórios), `PRD.md`, `AGENTS.md` e `PROGRESS.md`.
 - **Protocolo de Segurança Pré-Push com Retenção FIFO**: Tag de rollback no GitHub (`rollback-prod-YYYYMMDD-HHmm`) e backup local com `.env` sob `.gitignore`, mantendo sempre os 5 snapshots mais recentes.
 - **Blindagem de Pagamentos & Banco de Dados**: Webhooks com verificação de assinatura e trava de idempotência; integridade de BD via *Expand and Contract*.
+- **Protocolo SEO, GEO, AEO & Google Search Console**: Checklist obrigatório pré-push para Rich Results (Products, Videos, FAQs), conformidade estrita Schema.org com DOM, manifesto de IA (`llms.txt`), liberação de robôs de IA generativa e Favicons oficiais multi-resolução.
 
 ---
 
@@ -96,7 +97,8 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
 ## 6. Protocolo de Segurança: Ponto de Restauração e Backup de Produção (Obrigatório Pré-Push)
 - FLUXO OBRIGATÓRIO PRÉ-PUSH (AO APROVAR PUSH):
   - Sempre que o usuário autorizar/aprovar o push, ANTES de executá-lo, é obrigatório:
-    1. **Sincronização com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) geraram commits automáticos de estado no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git rebase origin/<branch>` antes de prosseguir.
+    1. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
+    2. **Sincronização com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) geraram commits automáticos de estado no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git rebase origin/<branch>` antes de prosseguir.
     2. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
     3. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
     4. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
@@ -122,6 +124,41 @@ Basta copiar o link abaixo e colar no chat do Antigravity dizendo:
 - INTEGRIDADE DE BANCO DE DADOS (EXPAND AND CONTRACT): PROIBIDO executar comandos destrutivos (`DROP TABLE`, `DROP COLUMN`, `TRUNCATE` ou reset de schema) em bancos de produção (Neon PostgreSQL, Supabase, etc.) de forma autônoma. Mudanças de schema devem ser sempre retrocompatíveis: colunas novas devem ser criadas inicialmente como `NULLABLE` ou com `DEFAULT` seguro.
 - VALIDAÇÃO DE TIPOS E QUALIDADE: Antes de apresentar qualquer entrega como pronta para teste ou produção, realizar verificação estática de tipagem (`tsc --noEmit`, `py_compile` ou equivalente do projeto) para garantir zero erros de compilação.
 - PADRÃO PARA VÍDEOS CURTOS (SHORTS/REELS): Em automações de marketing/vídeo, assegurar proporção estrita 9:16 (1080x1920) e duração contida. PROIBIDO injetar thumbnails horizontais 16:9 via API em vídeos verticais para não desqualificá-los do carrossel nativo de Shorts/Reels.
+
+## 8. Protocolo e Checklist de Otimização de Buscas (SEO, GEO, AEO, SERP e Google Search Console)
+- OBRIGATÓRIO EM TODOS OS PROJETOS WEB E LANDING PAGES: Antes de aprovar qualquer push ou deploy, validar os seguintes pilares de visibilidade orgânica, motores de IA e conformidade técnica:
+  1. **Consulta Obrigatória à Documentação Oficial (Google Search Central & Schema.org):**
+     - Antes de implementar ou alterar dados estruturados, metadados ou regras de indexação, verificar SEMPRE as diretrizes oficiais do Google Search Central (Structured Data Guidelines) e a especificação do Schema.org para o tipo exato de Rich Result.
+     - Expressamente PROIBIDO assumir ou inventar propriedades ou valores enumerados inexistentes na especificação oficial.
+  2. **Sincronia DOM x Schema (Conformidade Estrita com o Google Search Central):**
+     - Toda marcação Schema.org em JSON-LD (`LocalBusiness`, `FAQPage`, `Service`, `Product`, `Organization`) DEVE ter correspondência textual direta, legível e visível para humanos no corpo da página (`<body>`).
+     - Expressamente PROIBIDO manter dados estruturados ricos (ex: FAQs, cidades, serviços, preços) ocultos do usuário no DOM ou divergentes (ex: preço no Schema diferente do preço na tela). Utilize elementos semânticos interativos como `<details>` e `<summary>` para manter o design limpo sem esconder conteúdo dos rastreadores.
+  3. **Conformidade Estrita de Produtos e Listagens do Comerciante (Merchant Listings):**
+     - Schema `Product`: O campo `image` é OBRIGATÓRIO e deve conter array de URLs absolutas em alta resolução.
+     - Schema `Offer`: Declarar obrigatoriamente `price`, `priceCurrency`, `availability` (`https://schema.org/InStock`), `validFrom` (data de início de vigência) e `priceValidUntil`.
+     - Políticas de Frete (`shippingDetails`): Obrigatório mesmo para produtos/serviços digitais (declarar taxa 0 BRL e prazo de entrega imediata) para zerar avisos no Search Console.
+     - Políticas de Devolução (`hasMerchantReturnPolicy`): O campo `returnMethod` DEVE utilizar exclusivamente valores válidos da enumeração Schema.org (ex: `https://schema.org/ReturnByMail`). NUNCA inventar valores como `ReturnOnline`.
+  4. **Formatação Estrita de Vídeo (`VideoObject`):**
+     - O campo `uploadDate` DEVE conter data e hora completas no padrão ISO 8601 com fuso horário (ex: `YYYY-MM-DDTHH:mm:ss-03:00` ou `Z`). Datas simples sem hora/fuso (`YYYY-MM-DD`) são rejeitadas pelo Search Console como erro crítico.
+     - Incluir obrigatoriamente `name`, `description`, `thumbnailUrl` (em array de alta resolução), `uploadDate`, `contentUrl` e `embedUrl`.
+  5. **Prontidão para IAs, Answer Engines e RAG (AEO / GEO):**
+     - Manter e atualizar o arquivo de manifesto de IA `llms.txt` na raiz com serviços, localização, contatos, diferenciais e preços.
+     - Garantir a descoberta do arquivo no `<head>` via `<link rel="alternate" type="text/markdown" href="/llms.txt" title="Contexto LLM">` e no `robots.txt` com a diretiva `llms-txt: <URL_ABSOLUTA>/llms.txt`.
+     - Liberar explicitamente no `robots.txt` os crawlers das principais IAs generativas (`GPTBot`, `PerplexityBot`, `Claude-Web`, `Google-Extended`, `anthropic-ai`, `cohere-ai`, `Applebot-Extended`).
+  6. **Identidade Visual nas SERPs (Favicon Oficial e CTR):**
+     - Presença obrigatória de Favicon explícito da marca oficial do projeto vinculado via `<link rel="icon">` e meta tag `<meta name="theme-color">`.
+     - Proibido deixar páginas sem favicon definido ou com ícone genérico/placeholder.
+     - Gerar sempre favicon quadrado múltiplo de 48px e multi-resolução (`favicon.ico` com camadas de 16px a 256px e `favicon.png` / `icon.png`) conforme a documentação do Google Search, garantindo indexação imediata nas SERPs mobile e desktop.
+  7. **Metadados Geográficos e SEO Local (GEO):**
+     - Em negócios locais ou regionais, definir explicitamente as meta tags geográficas (`geo.region`, `geo.placename`, `geo.position`, `ICBM`) e coordenadas geográficas no Schema.org, delimitando com precisão a área de cobertura (`areaServed`).
+  8. **Integridade de Rastreamento (Sitemap, Canonical e metadataBase):**
+     - Garantir URL canônica única (`<link rel="canonical">`) apontando para o domínio definitivo.
+     - Configurar `metadataBase` explícito no framework (ex: Next.js) para assegurar resolução de URLs absolutas em Open Graph, Twitter e canonicals.
+     - NUNCA incluir rotas privadas ou protegidas por autenticação (`/dashboard`, `/checkout`, `/admin`, `/auth`, `/login`) no `sitemap.xml`.
+     - Atualizar a tag `<lastmod>` no `sitemap.xml` com a data do deploy para acionar a fila prioritária do Googlebot.
+  9. **Core Web Vitals & SXO (Search Experience):**
+     - Elemento LCP com `fetchpriority="high"` e dimensões fixas (`width`/`height`) para eliminar CLS.
+     - Scripts de monetização, banners ou iframes pesados devem carregar estritamente de forma assíncrona ou via `IntersectionObserver` postergado, preservando a métrica INP (Interaction to Next Paint).
 ```
 
 ---
