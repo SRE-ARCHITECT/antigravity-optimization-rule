@@ -1,4 +1,4 @@
-# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.7)
+# 🚀 Antigravity Optimization Rule (Vibecoding Ready v2.8)
 
 Bem-vindo à **Antigravity Optimization Rule**! Uma regra de sistema (Global Rule) desenhada cirurgicamente para maximizar a eficiência, reduzir drasticamente o consumo de tokens e focar 100% na entrega de código de alta performance em português do Brasil, mantendo seu hardware leve e seu workflow fluindo sem travamentos.
 
@@ -30,7 +30,7 @@ C:\Users\<SEU_USUARIO>\.gemini\config\rules\GEMINI.md
 
 ---
 
-## 📜 Conteúdo Oficial da Regra (v2.7)
+## 📜 Conteúdo Oficial da Regra (v2.8)
 
 ```markdown
 # Diretrizes Gerais, Protocolo Operacional e Governança de IA (GEMINI.md)
@@ -66,7 +66,7 @@ C:\Users\<SEU_USUARIO>\.gemini\config\rules\GEMINI.md
 - INTEGRIDADE DE DEPENDÊNCIAS: PROIBIDO alterar lockfiles (`package-lock.json`, `poetry.lock`, `requirements.txt`) adicionando pacotes desnecessários ou versões incompatíveis sem consulta prévia. Priorizar bibliotecas nativas antes de instalar novos pacotes de terceiros.
 - OBSERVABILIDADE E TRATAMENTO DE ERROS: Expressamente **PROIBIDO** engolir exceções com `except: pass` ou `catch (e) {}` vazios. Todo bloco de erro deve, obrigatoriamente, registrar log contextual com nível `logger.warning` ou `logger.error`.
 - PADRONIZAÇÃO TEMPORAL BRASIL (UTC-3): Armazenamento em banco de dados e logs sempre em **UTC** (`TIMESTAMPTZ` / ISO 8601). Exibições, relatórios e agendamento de crons devem obrigatoriamente converter explicitamente para o fuso de Brasília (`America/Sao_Paulo` / UTC-3).
-- TIMEOUTS DEFENSIVOS EM APIS SERVERLESS: Toda chamada externa a serviços de terceiros (APIs de IA, gateways de pagamento, webhooks ou microsserviços) disparada a partir de Edge/Serverless Functions (Next.js, Vercel, Cloudflare Workers) DEVE implementar obrigatoriamente timeout defensivo (ex: `AbortSignal.timeout(8000)` ou wrapper equivalente de 8s). Isso impede que a função trave até o teto da plataforma (10s a 15s) e retorne erro 504 Gateway Timeout, acionando em tempo hábil o fluxo de fallback ou resposta amigável ao usuário.
+- TIMEOUTS DEFENSIVOS EM APIS SERVERLESS E INTEGRAÇÕES EXTERNAS: Toda chamada externa a serviços de terceiros, APIs governamentais (PNCP, Compras.gov, Receita Federal) ou gateways disparada a partir de Edge/Serverless Functions (Next.js, Vercel, Cloudflare Workers) DEVE implementar obrigatoriamente timeout defensivo estrito de 8 segundos (ex: `AbortSignal.timeout(8000)`). Isso impede que a função trave até o teto da plataforma (10s a 15s) e retorne erro 504 Gateway Timeout, acionando em tempo hábil o fluxo de fallback ou resposta amigável ao usuário.
 
 ## 5. Continuidade de Sessões e Documentação Obrigatória do Projeto
 - SEMPRE criar e manter atualizadas as documentações gerais e essenciais na raiz de cada projeto:
@@ -84,78 +84,65 @@ C:\Users\<SEU_USUARIO>\.gemini\config\rules\GEMINI.md
 ## 6. Protocolo de Segurança: Ponto de Restauração e Backup de Produção (Obrigatório Pré-Push)
 - FLUXO OBRIGATÓRIO PRÉ-PUSH (AO APROVAR PUSH):
   - Sempre que o usuário autorizar/aprovar o push, ANTES de executá-lo, é obrigatório:
-    1. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
-    2. **Sincronização Obrigatória com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) geraram commits automáticos de estado no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git rebase origin/<branch>` antes de prosseguir.
+    1. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon físico, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
+    2. **Sincronização Obrigatória com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) ou commits web geraram alterações no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git merge origin/<branch>` ou rebase antes de prosseguir.
     3. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
-    4. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
+    4. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env` / `.env.local`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
     5. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
     6. **Política de Retenção de Snapshots (Rolling Backups)**: Manter sempre no máximo os **5 snapshots mais recentes** em `backup-producao/`. Qualquer snapshot mais antigo que o 5º deve ser automaticamente excluído para evitar acúmulo de disco e rotação de credenciais.
     7. **Prosseguimento**: Somente após a conclusão com sucesso da tag/rollback no GitHub e do backup local com a política de retenção aplicada, prosseguir com o push, deploy e atualizações gerais.
 
-- ENTRADA NA SESSÃO (PROJETO EM PRODUÇÃO):
-  - Ao iniciar qualquer projeto, verificar se o repositório possui branch/deploy de produção ativo.
-  - Perguntar explicitamente ao usuário se deseja criar uma cópia/branch de rollback ou tag de rollback da versão ativa no repositório.
-  - Se autorizado, sincronizar com o remoto (`git fetch`), criar a tag/branch com carimbo de data/hora (ex: `rollback-prod-YYYYMMDD-HHmm`) e subir a tag para o remote (`git push origin <tag>`).
-
-- ENCERRAMENTO E PÓS-DEPLOY (BACKUP LOCAL):
-  - Ao concluir implementações e publicar em produção, após validação e autorização explícita do usuário confirmando que tudo está funcionando:
-  - Gerar a pasta de snapshot local na raiz do projeto (ex: `backup-producao/YYYY-MM-DD/`).
-  - Copiar todo o código-fonte, configurações de infraestrutura (Vercel, Cloudflare, Docker, CI/CD, crons), schemas de banco e variáveis de ambiente (`.env`).
-  - OBRIGATÓRIO: Ignorar sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
-  - Garantir a aplicação da política de retenção mantendo apenas os **5 snapshots mais recentes** na pasta `backup-producao/`.
-  - Garantir que a pasta de backups locais esteja no `.gitignore` do projeto.
-
 ## 7. Segurança de Dados, Segredos e Integridade do Sistema
 - GESTÃO DE SEGREDOS E `.env`: NUNCA versionar ou commitar arquivos `.env`, `.env.local`, `.env.production` ou chaves de API / credenciais privadas (Supabase, Firebase, Neon, Mercado Pago, etc.) no Git. Ao adicionar variáveis novas, registrar apenas a chave sem o valor em `.env.example`.
-- BLINDAGEM DE PAGAMENTOS E WEBHOOKS: Todo endpoint de webhook financeiro (Mercado Pago, Stripe, Asaas) deve obrigatoriamente validar a assinatura criptográfica (`x-signature` ou token secreto) e implementar trava estrita de idempotência no banco de dados para evitar cobranças ou liberações duplicadas.
+- BLINDAGEM DE PAGAMENTOS E WEBHOOKS: Todo endpoint de webhook financeiro (Mercado Pago, Stripe, Asaas, Cakto) deve obrigatoriamente validar a assinatura criptográfica (`x-signature` ou token secreto) e implementar trava estrita de idempotência no banco de dados para evitar cobranças ou liberações duplicadas.
 - INTEGRIDADE DE BANCO DE DADOS (EXPAND AND CONTRACT): PROIBIDO executar comandos destrutivos (`DROP TABLE`, `DROP COLUMN`, `TRUNCATE` ou reset de schema) em bancos de produção (Neon PostgreSQL, Supabase, etc.) de forma autônoma. Mudanças de schema devem ser sempre retrocompatíveis: colunas novas devem ser criadas inicialmente como `NULLABLE` ou com `DEFAULT` seguro.
-- SINGLETON E POOLING EM BANCOS SERVERLESS: Conexões com PostgreSQL Serverless (Neon, Supabase) em ambientes Next.js / Serverless devem obrigatoriamente reutilizar instâncias globais via padrão Singleton e adaptadores de pooling (Neon HTTP Pooler / WebSocket Pooler / Supabase Transaction Pooler na porta 6543), sendo expressamente PROIBIDO abrir novas conexões ou pools crus a cada ciclo de execução de rota de API, evitando o esgotamento de conexões (*connection pool exhaustion*).
+- SINGLETON E POOLING OBRIGATÓRIO EM BANCOS SERVERLESS: Conexões com PostgreSQL Serverless (Neon, Supabase) em ambientes Next.js / Serverless devem obrigatoriamente reutilizar instâncias globais via padrão Singleton armazenado em `globalThis` (ex: `globalForDb.conn ?? postgres(DATABASE_URL, { max: 10, idle_timeout: 20 })`), sendo expressamente PROIBIDO abrir novas conexões ou pools crus a cada ciclo de execução de rota de API, evitando o esgotamento de conexões (*connection pool exhaustion*).
 - HIGIENE DE PAYLOADS, TRANSCRIÇÕES E LGPD: Expressamente PROIBIDO armazenar arquivos de mídia brutos ou áudios pesados codificados em Base64 diretamente em colunas de bancos relacionais de chat/leads. Áudios recebidos devem ser consumidos em memória ou buffer efêmero apenas para transcrição (STT), persistindo no banco exclusivamente o texto transcrito e metadados contextuais estritamente necessários, respeitando os princípios de minimização de dados da LGPD.
 - VALIDAÇÃO DE TIPOS E QUALIDADE: Antes de apresentar qualquer entrega como pronta para teste ou produção, realizar verificação estática de tipagem (`tsc --noEmit`, `py_compile` ou equivalente do projeto) para garantir zero erros de compilação.
-- PADRÃO PARA VÍDEOS CURTOS (SHORTS/REELS): Em automações de marketing/vídeo, assegurar proporção estrita 9:16 (1080x1920) e duração contida. PROIBIDO injetar thumbnails horizontais 16:9 via API em vídeos verticais para não desqualificá-los do carrossel nativo de Shorts/Reels.
 
 ## 8. Protocolo e Checklist de Otimização de Buscas (SEO, GEO, AEO, SERP e Google Search Console)
 - OBRIGATÓRIO EM TODOS OS PROJETOS WEB E LANDING PAGES: Antes de aprovar qualquer push ou deploy, validar os seguintes pilares de visibilidade orgânica, motores de IA e conformidade técnica:
   1. **Consulta Obrigatória à Documentação Oficial (Google Search Central & Schema.org):**
-     - Antes de implementar ou alterar dados estruturados, metadados ou regras de indexação, verificar SEMPRE as diretrizes oficiais do Google Search Central (Structured Data Guidelines) e a especificação do Schema.org para o tipo exato de Rich Result.
+     - Antes de implementar ou alterar dados estruturados, metadados ou regras de indexação, verificar SEMPRE as diretrizes oficiais do Google Search Central e a especificação do Schema.org para o tipo exato de Rich Result.
      - Expressamente PROIBIDO assumir ou inventar propriedades ou valores enumerados inexistentes na especificação oficial.
   2. **Sincronia DOM x Schema (Conformidade Estrita com o Google Search Central):**
-     - Toda marcação Schema.org em JSON-LD (`LocalBusiness`, `FAQPage`, `Service`, `Product`, `Organization`) DEVE ter correspondência textual direta, legível e visível para humanos no corpo da página (`<body>`).
-     - Expressamente PROIBIDO manter dados estruturados ricos (ex: FAQs, cidades, serviços, preços) ocultos do usuário no DOM ou divergentes (ex: preço no Schema diferente do preço na tela). Utilize elementos semânticos interativos como `<details>` e `<summary>` para manter o design limpo sem esconder conteúdo dos rastreadores.
+     - Toda marcação Schema.org em JSON-LD (`LocalBusiness`, `FAQPage`, `Service`, `Product`, `Organization`, `SoftwareApplication`) DEVE ter correspondência textual direta, legível e visível para humanos no corpo da página (`<body>`).
+     - Expressamente PROIBIDO manter dados estruturados ricos (ex: FAQs, cidades, serviços, preços) ocultos do usuário no DOM ou divergentes (ex: preço no Schema diferente do preço na tela).
   3. **Conformidade Estrita de Produtos e Listagens do Comerciante (Merchant Listings):**
      - Schema `Product`: O campo `image` é OBRIGATÓRIO e deve conter array de URLs absolutas em alta resolução.
      - Schema `Offer`: Declarar obrigatoriamente `price`, `priceCurrency`, `availability` (`https://schema.org/InStock`), `validFrom` (data de início de vigência) e `priceValidUntil`.
      - Políticas de Frete (`shippingDetails`): Obrigatório mesmo para produtos/serviços digitais (declarar taxa 0 BRL e prazo de entrega imediata) para zerar avisos no Search Console.
      - Políticas de Devolução (`hasMerchantReturnPolicy`): O campo `returnMethod` DEVE utilizar exclusivamente valores válidos da enumeração Schema.org (ex: `https://schema.org/ReturnByMail`). NUNCA inventar valores como `ReturnOnline`.
   4. **Formatação Estrita de Vídeo (`VideoObject`):**
-     - O campo `uploadDate` DEVE conter data e hora completas no padrão ISO 8601 com fuso horário (ex: `YYYY-MM-DDTHH:mm:ss-03:00` ou `Z`). Datas simples sem hora/fuso (`YYYY-MM-DD`) são rejeitadas pelo Search Console como erro crítico.
-     - Incluir obrigatoriamente `name`, `description`, `thumbnailUrl` (em array de alta resolução), `uploadDate`, `contentUrl` e `embedUrl`.
+     - O campo `uploadDate` DEVE conter data e hora completas no padrão ISO 8601 com fuso horário (ex: `YYYY-MM-DDTHH:mm:ss-03:00` ou `Z`).
+     - Incluir obrigatoriamente `name`, `description`, `thumbnailUrl`, `uploadDate`, `contentUrl` e `embedUrl`.
   5. **Prontidão para IAs, Answer Engines e RAG (AEO / GEO):**
      - Manter e atualizar o arquivo de manifesto de IA `llms.txt` na raiz com serviços, localização, contatos, diferenciais e preços.
      - Garantir a descoberta do arquivo no `<head>` via `<link rel="alternate" type="text/markdown" href="/llms.txt" title="Contexto LLM">` e no `robots.txt` com a diretiva `llms-txt: <URL_ABSOLUTA>/llms.txt`.
      - Liberar explicitamente no `robots.txt` os crawlers das principais IAs generativas (`GPTBot`, `PerplexityBot`, `Claude-Web`, `Google-Extended`, `anthropic-ai`, `cohere-ai`, `Applebot-Extended`).
-  6. **Identidade Visual nas SERPs (Favicon Oficial e CTR):**
-     - Presença obrigatória de Favicon explícito da marca oficial do projeto vinculado via `<link rel="icon">` e meta tag `<meta name="theme-color">`.
-     - Proibido deixar páginas sem favicon definido ou com ícone genérico/placeholder.
-     - Gerar sempre favicon quadrado múltiplo de 48px e multi-resolução (`favicon.ico` com camadas de 16px a 256px e `favicon.png` / `icon.png`) conforme a documentação do Google Search, garantindo indexação imediata nas SERPs mobile e desktop.
+  6. **Identidade Visual nas SERPs (Favicon Físico Canônico e CTR):**
+     - Presença física OBRIGATÓRIA de arquivo binário `public/favicon.ico` na raiz pública além dos ícones dinâmicos do framework (`icon.png`), eliminando retornos HTTP 404 em varreduras de robôs de busca.
+     - Gerar sempre favicon multi-camadas (16px a 256px) conforme a documentação do Google Search Central, garantindo indexação imediata nas SERPs mobile e desktop.
   7. **Metadados Geográficos e SEO Local (GEO):**
      - Em negócios locais ou regionais, definir explicitamente as meta tags geográficas (`geo.region`, `geo.placename`, `geo.position`, `ICBM`) e coordenadas geográficas no Schema.org, delimitando com precisão a área de cobertura (`areaServed`).
-  8. **Integridade de Rastreamento (Sitemap, Canonical e metadataBase):**
+  8. **Integridade de Rastreamento (Sitemap Dinâmico, Canonical e metadataBase):**
      - Garantir URL canônica única (`<link rel="canonical">`) apontando para o domínio definitivo.
      - Configurar `metadataBase` explícito no framework (ex: Next.js) para assegurar resolução de URLs absolutas em Open Graph, Twitter e canonicals.
-     - NUNCA incluir rotas privadas ou protegidas por autenticação (`/dashboard`, `/checkout`, `/admin`, `/auth`, `/login`) no `sitemap.xml`.
-     - Atualizar a tag `<lastmod>` no `sitemap.xml` com a data do deploy para acionar a fila prioritária do Googlebot.
-  9. **Core Web Vitals & SXO (Search Experience):**
-     - Elemento LCP com `fetchpriority="high"` e dimensões fixas (`width`/`height`) para eliminar CLS.
-     - Scripts de monetização, banners ou iframes pesados devem carregar estritamente de forma assíncrona ou via `IntersectionObserver` postergado, preservando a métrica INP (Interaction to Next Paint).
+     - Implementar gerador nativo dinâmico `sitemap.ts` com prioridade e `lastModified` atualizado para acionar a fila prioritária do Googlebot.
+     - NUNCA incluir rotas privadas ou protegidas por autenticação (`/dashboard`, `/painel`, `/checkout`, `/admin`, `/auth`, `/login`) no `sitemap.xml`.
 
 ## 9. Governança, Validação Ativa e Resiliência de Modelos de IA
 - AUDITORIA ATIVA DE MODELOS (ZERO MODELOS DESCONTINUADOS): Ao auditar, refatorar ou inicializar qualquer projeto que consuma APIs de IA generativa (Google Gemini, Groq, OpenAI, Anthropic, OpenRouter, xAI), é OBRIGATÓRIO verificar e validar se os identificadores de modelos (ex: `model: ...`) no código continuam ativos, funcionais e oficialmente suportados pelos provedores. É expressamente PROIBIDO manter identificadores obsoletos, descontinuados ou alucinados.
-- TESTE REAL DE CONECTIVIDADE E CATÁLOGO: Antes de concluir a auditoria, entrega ou homologação de um projeto com IA, executar validação real contra as APIs ativas (consultando o catálogo oficial de modelos ou disparando prompt de teste) para assegurar ausência de erros 404 (modelo inexistente), 429 (estouro de taxa OTPM/TPM) ou 503 (indisponibilidade temporária de capacidade).
+- TESTE REAL DE CONECTIVIDADE E CONSULTA AO CATÁLOGO OFICIAL: Antes de concluir a auditoria, entrega ou homologação de um projeto com IA, é OBRIGATÓRIO executar consulta programática ao endpoint de catálogo ativo da conta (`client.models.list()`) e disparar prompt de teste real. Proibido assumir nomes de modelos apenas com base em documentações genéricas externas sem confirmação de suporte na chave/plano configurado no projeto.
 - PIPELINE DE FALLBACK MULTI-PROVEDOR OBRIGATÓRIO: Qualquer assistente conversacional, concierge ou motor de inferência analítica em produção deve implementar arquitetura de fallback em cascata (ex: Provedor Primário ➔ Provedor Secundário ➔ Provedor de Contingência), garantindo que picos de carga ou oscilações de serviço não interrompam o fluxo do usuário final.
 - BLINDAGEM DE LIMITES E TOKENS (OTPM / TPM): Sempre declarar travas defensivas de `max_tokens`, parâmetros de `temperature` calibrados e timeouts em chamadas de API, impedindo que respostas verbosas excedam cotas por minuto (*Output Tokens Per Minute*) em planos gratuitos, básicos ou sob demanda.
-- HIGIENE DE PERSONAS E BLACKLIST EM AGENTES CONVERSACIONAIS: Toda persona de IA conversacional (ex: Dra. Manu) deve ter suas regras estritas (limite de frases, tom acolhedor, blacklist de termos técnicos/jurídicos proibidos e linguagem de estimativa aproximada) testadas com perguntas reais para assegurar 100% de conformidade antes de qualquer publicação ou deploy.
 - OBSERVABILIDADE E RESGUARDO DE CREDENCIAIS DE IA: Registrar logs contextuais contendo latência da requisição, provedor efetivo de resolução e taxa de sucesso do fallback, sendo expressamente PROIBIDO exibir chaves de API, tokens de autorização ou dados pessoais em logs de erro.
+
+## 10. Aprendizado Contínuo, Síntese de Soluções e Sugestão Ativa de Melhorias
+- SÍNTESE ATIVA PÓS-RESOLUÇÃO: Ao solucionar desafios críticos, bugs de integração de terceiros, gargalos de performance ou falhas de configuração em qualquer sessão, o assistente DEVE sintetizar os aprendizados essenciais obtidos (o que falhou, causa raiz e solução definitiva adotada).
+- SUGESTÃO PRÓ-ATIVA DE INCORPORAÇÃO: Ao final de cada ciclo de entrega bem-sucedido ou auditoria, o assistente DEVE avaliar criticamente se as soluções implementadas possuem caráter geral e sugerir ativamente ao usuário a incorporação desses aprendizados nas diretrizes globais (`GEMINI.md`), nas regras (`rules/`) ou nas documentações dos projetos.
+- CICLO DE RETROALIMENTAÇÃO (FLYWHEEL DE CONHECIMENTO): Uma vez aprovada pelo usuário, a nova diretriz deve ser registrada de forma permanente nos repositórios de governança (`antigravity-optimization-rule`) e nas configurações de ambiente (`.gemini/config/`), retroalimentando todos os projetos futuros para que nenhum erro conhecido seja repetido.
+- HIGIENE E NÃO-REGRESSÃO: Novas políticas não devem conflitar com as existentes, priorizando sempre resiliência, segurança de dados, menor uso de tokens e conformidade com o ecossistema do usuário.
 ```
 
 ---

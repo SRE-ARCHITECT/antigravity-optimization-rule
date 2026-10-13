@@ -2,7 +2,7 @@
 
 ## Últimas Alterações Realizadas
 
-### Sessão 2026-10-12 — Atualização para v2.7 (Governança de Modelos de IA, Resiliência e Serverless)
+### Sessão 2026-10-12 — Atualização para v2.8 (Governança de Modelos de IA, Resiliência e Serverless)
 - [x] Atualização da regra global `GEMINI.md` para v2.7 com os **9 pilares consolidados**:
   - **1 a 3**: Otimização & Tokens, Controle Estrito de Alterações e Otimizações Windows/PowerShell.
   - **4. Engenharia de Software & Serverless**: Adição de timeouts defensivos em Serverless Functions (`AbortSignal.timeout(8000)`) contra erros 504 Gateway Timeout.
