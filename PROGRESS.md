@@ -2,6 +2,16 @@
 
 ## Últimas Alterações Realizadas
 
+### Sessão 2026-10-13 — Atualização para v2.8 (Aprendizado Contínuo, Favicon Físico Canônico e Governança Estendida)
+- [x] Atualização da regra global `GEMINI.md` para v2.8 com os **10 pilares consolidados**:
+  - **10. Aprendizado Contínuo, Síntese de Soluções e Sugestão Ativa de Melhorias**: Mecanismo ativo de reflexão pós-implementação, identificação proativa de padrões reutilizáveis (SEO/AEO, resiliência de IA, pooling serverless), documentação imediata e proposição explícita de atualização das diretrizes globais e do repositório público.
+  - Reforço do **Favicon Físico Canônico** (`public/favicon.ico` multi-camadas 16px a 256px) para zerar erros 404 em crawlers de busca e garantir indexação nas SERPs mobile e desktop.
+  - Reforço da **Auditoria Ativa de Modelos de IA** contra o catálogo oficial da conta (`client.models.list()`) e disparo de prompt de teste real contra erros 404/429.
+  - Reforço do **Singleton Pattern e Pooling** para conexões Serverless com bancos relacionais (Neon/Supabase) via `globalThis`.
+  - Reforço de **Timeouts Defensivos Serverless de 8s** (`AbortSignal.timeout(8000)`) em APIs externas governamentais e integrações críticas.
+- [x] Atualização do `README.md` para a versão v2.8 e sincronização com `C:\Users\TI\.gemini\config\GEMINI.md` e `rules\GEMINI.md`.
+- [x] Sincronização com o repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` no GitHub.
+
 ### Sessão 2026-10-12 — Atualização para v2.8 (Governança de Modelos de IA, Resiliência e Serverless)
 - [x] Atualização da regra global `GEMINI.md` para v2.7 com os **9 pilares consolidados**:
   - **1 a 3**: Otimização & Tokens, Controle Estrito de Alterações e Otimizações Windows/PowerShell.
