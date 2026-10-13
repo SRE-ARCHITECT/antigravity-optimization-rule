@@ -109,9 +109,9 @@ C:\Users\<SEU_USUARIO>\.gemini\config\rules\GEMINI.md
      - Toda marcação Schema.org em JSON-LD (`LocalBusiness`, `FAQPage`, `Service`, `Product`, `Organization`, `SoftwareApplication`) DEVE ter correspondência textual direta, legível e visível para humanos no corpo da página (`<body>`).
      - Expressamente PROIBIDO manter dados estruturados ricos (ex: FAQs, cidades, serviços, preços) ocultos do usuário no DOM ou divergentes (ex: preço no Schema diferente do preço na tela).
   3. **Conformidade Estrita de Produtos e Listagens do Comerciante (Merchant Listings):**
-     - Schema `Product`: O campo `image` é OBRIGATÓRIO e deve conter array de URLs absolutas em alta resolução.
+     - Schema `Product`: Os campos `image` (array de URLs absolutas em alta resolução), `brand` (objeto `@type: "Brand"`) e `sku` (identificador único) são mandatórios para zerar avisos do Search Console.
      - Schema `Offer`: Declarar obrigatoriamente `price`, `priceCurrency`, `availability` (`https://schema.org/InStock`), `validFrom` (data de início de vigência) e `priceValidUntil`.
-     - Políticas de Frete (`shippingDetails`): Obrigatório mesmo para produtos/serviços digitais (declarar taxa 0 BRL e prazo de entrega imediata) para zerar avisos no Search Console.
+     - Políticas de Frete (`shippingDetails`): Obrigatório mesmo para produtos/serviços digitais ou SaaS (declarar taxa 0 BRL, `shippingDestination` com `@type: "DefinedRegion"` apontando `addressCountry`, e `deliveryTime` com `handlingTime` e `transitTime` ambos zerados com `unitCode: "DAY"`) para ativação digital imediata e zerar avisos no Search Console.
      - Políticas de Devolução (`hasMerchantReturnPolicy`): O campo `returnMethod` DEVE utilizar exclusivamente valores válidos da enumeração Schema.org (ex: `https://schema.org/ReturnByMail`). NUNCA inventar valores como `ReturnOnline`.
   4. **Formatação Estrita de Vídeo (`VideoObject`):**
      - O campo `uploadDate` DEVE conter data e hora completas no padrão ISO 8601 com fuso horário (ex: `YYYY-MM-DDTHH:mm:ss-03:00` ou `Z`).

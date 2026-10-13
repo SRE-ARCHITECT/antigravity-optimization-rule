@@ -10,6 +10,7 @@
   - Reforço do **Singleton Pattern e Pooling** para conexões Serverless com bancos relacionais (Neon/Supabase) via `globalThis`.
   - Reforço de **Timeouts Defensivos Serverless de 8s** (`AbortSignal.timeout(8000)`) em APIs externas governamentais e integrações críticas.
 - [x] Atualização do `README.md` para a versão v2.8 e sincronização com `C:\Users\TI\.gemini\config\GEMINI.md` e `rules\GEMINI.md`.
+  - Reforço de **Merchant Listings Zero Avisos**: Inclusão de `brand`, `sku`, `shippingDestination` (região/país) e `handlingTime` (0 dias para SaaS) nas diretrizes da Seção 8.3.
 - [x] Sincronização com o repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` no GitHub.
 
 ### Sessão 2026-10-12 — Atualização para v2.8 (Governança de Modelos de IA, Resiliência e Serverless)
