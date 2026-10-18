@@ -2,6 +2,16 @@
 
 ## Últimas Alterações Realizadas
 
+### Sessão 2026-10-18 - Atualização para v3.0 (Copywriting de IA, Sanitização Universal de Links e Sincronização Mandatória)
+- [x] Inclusão da **Seção 12: Copywriting de IA, Automação de Mídias Sociais e Higienização de Links (LinkedIn, X e Buffer)**:
+  - **Higienização Defensiva de Links:** Sanitizador determinístico via Regex (`sanitize_social_text`) desmontando links Markdown (`[texto](url)`, `[[url]]`), removendo colchetes/parênteses em URLs e deduplicando URLs idênticas, eliminando 100% de links quebrados nas timelines.
+  - **Padrão de Copywriting Executivo para LinkedIn:** Linha 1 obrigatória como HEADLINE EM CAIXA ALTA (8 a 12 palavras, sem arrogância e sem menosprezar desenvolvedores ou tecnologias legadas) e teto estrito de 80 a 100 palavras no corpo para alta escaneabilidade móvel.
+  - **Bases de Conhecimento Estruturadas em JSON:** Registro formal de arquivos de referência (`book_reference.json`) para sorteio dinâmico de capítulos e princípios duradouros, prevenindo alucinações da IA e garantindo rotação perene de conteúdo.
+- [x] Atualização da **Seção 10: Aprendizado Contínuo**:
+  - Diretriz mandatória exigindo a sincronização simultânea de todas as instâncias centrais (`C:\Users\TI\.gemini\config`, `F:\Documents\GitClone\GEMINI MD` e o repositório GitHub `antigravity-optimization-rule`).
+- [x] Inclusão consolidada da **Seção 11: Otimização Nativa Mobile e Gestão de Memória em Android (Kotlin / Jetpack Compose)**.
+
+
 ### Sessão 2026-10-13 — Atualização para v2.8 (Aprendizado Contínuo, Favicon Físico Canônico e Governança Estendida)
 - [x] Atualização da regra global `GEMINI.md` para v2.8 com os **10 pilares consolidados**:
   - **10. Aprendizado Contínuo, Síntese de Soluções e Sugestão Ativa de Melhorias**: Mecanismo ativo de reflexão pós-implementação, identificação proativa de padrões reutilizáveis (SEO/AEO, resiliência de IA, pooling serverless), documentação imediata e proposição explícita de atualização das diretrizes globais e do repositório público.
@@ -29,7 +39,7 @@
 - [x] Consolidação das diretrizes de dados estruturados Schema.org, Merchant Listings, Favicons múltiplos de 48px e manifestos `llms.txt`.
 
 ## Estado Atual
-- Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` atualizado e sincronizado na v2.7.
+- Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` atualizado e sincronizado na v3.0.
 - Regra global ativa no ambiente do usuário e em projetos conectados.
 
 ## Próximos Passos
