@@ -38,6 +38,14 @@
 ### Sessão 2026-10-12 — Atualização para v2.6 (SEO, GEO, AEO e Google Search Console)
 - [x] Consolidação das diretrizes de dados estruturados Schema.org, Merchant Listings, Favicons múltiplos de 48px e manifestos `llms.txt`.
 
+
+### Sessão 2026-10-23 — Atualização para v3.1 (Otimização Mobile, PDF Nativo, Gestão de Modais e AdMob)
+- [x] Atualização da seção 11 da regra global `GEMINI.md` com os pilares de desenvolvimento mobile e Capacitor/WebView:
+  - **Exportação e Compartilhamento de PDF em Apps Híbridos (Capacitor/WebView):** Proibição de dependência de `<a download>` ou `doc.save()` em WebViews; obrigatoriedade de conversão para Base64, persistência via `@capacitor/filesystem` ou `@JavascriptInterface` e acionamento da Share Sheet nativa (`@capacitor/share` / `FileProvider`).
+  - **Desbloqueio de Rolagem e Higiene de Modais:** Modais inativos devem usar `display: none !important;` para eliminar camadas aceleradas por GPU (`backdrop-filter`) que interceptam gestos de toque no Android WebView. Contenção estrita de formulários com flexbox e `flex-shrink: 0` nos rodapés.
+  - **Coexistência de Google AdMob Banner com Modais:** Controle dinâmico de visibilidade com `hideBanner()` e `resumeBanner()` em modais para evitar sobreposição de botões de rodapé e prevenir cliques acidentais. Proibição estrita de identificadores de teste como fallback em releases de produção.
+- [x] Sincronização simultânea entre todas as 5 instâncias centrais (`.gemini/config`, `antigravity-optimization-rule` e `GEMINI MD`).
+
 ## Estado Atual
 - Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` atualizado e sincronizado na v3.0.
 - Regra global ativa no ambiente do usuário e em projetos conectados.
