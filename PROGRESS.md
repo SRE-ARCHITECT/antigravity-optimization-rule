@@ -46,6 +46,12 @@
   - **Coexistência de Google AdMob Banner com Modais:** Controle dinâmico de visibilidade com `hideBanner()` e `resumeBanner()` em modais para evitar sobreposição de botões de rodapé e prevenir cliques acidentais. Proibição estrita de identificadores de teste como fallback em releases de produção.
 - [x] Sincronização simultânea entre todas as 5 instâncias centrais (`.gemini/config`, `antigravity-optimization-rule` e `GEMINI MD`).
 
+- **Blindagem de Mídias Multi-Canal (HTTP 200), Compatibilidade WebP/PNG e Linguagem Humana no GEMINI.md**:
+  - Incorporada diretriz de proibição de URLs raw do GitHub em repositórios privados para publicação social, evitando retornos 404 e descartes de imagem no Buffer.
+  - Fixada a matriz de formatos: WebP ultraleve para LinkedIn e X, com PNG/JPEG obrigatório para Google Business Profile.
+  - Implementada regra de separação estanque entre engenharia interna e proposta de valor ao usuário final nos prompts de copywriting.
+  - Sincronização obrigatória de todas as instâncias centrais e tag remota no repositório de governança `rollback-prod-20261024-0234`.
+
 ## Estado Atual
 - Repositório remoto `SRE-ARCHITECT/antigravity-optimization-rule` atualizado e sincronizado na v3.0.
 - Regra global ativa no ambiente do usuário e em projetos conectados.
