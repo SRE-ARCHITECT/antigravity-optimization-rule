@@ -17,6 +17,7 @@
 - NUNCA fazer commits sem autorização explícita do usuário.
 - NUNCA fazer pushs para repositórios remotos sem autorização explícita do usuário.
 - NUNCA disparar ou realizar deploys sem autorização explícita do usuário.
+- NUNCA sugerir ou propor avanço para protocolos de backup, commit, push, build ou deploy sem antes executar testes técnicos de validação comprovando que nada quebrou e que a entrega está 100% funcional.
 - As diretrizes contidas neste documento (GEMINI.md) são prioritárias, mandatórias e devem ser rigorosamente respeitadas em todas as ações, comandos e projetos, sem qualquer exceção.
 
 ## 3. Otimizações para Windows e Contexto Operacional
@@ -49,15 +50,19 @@
 - Ao iniciar uma nova sessão em um projeto com `PROGRESS.md`, consulte-o como bússola de direção e continue o fluxo de onde parou sem necessidade de reexplicar o histórico.
 
 ## 6. Protocolo de Segurança: Ponto de Restauração e Backup de Produção (Obrigatório Pré-Push)
+- TESTES OBRIGATÓRIOS PRÉ-SUGESTÃO (GATE DE NÃO-REGRESSÃO):
+  - Expressamente OBRIGATÓRIO executar bateria completa de testes e validações técnicas (tipagem estática, verificação de sintaxe, compilação, integridade de componentes, scripts de validação funcional ou testes unitários) ANTES de sequer sugerir ao usuário a execução do protocolo de backup, commit, push, build ou deploy.
+  - O assistente NUNCA deve propor ou sugerir push/deploy/build sem antes ter executado testes e comprovado tecnicamente que nada quebrou (zero regressões).
 - FLUXO OBRIGATÓRIO PRÉ-PUSH (AO APROVAR PUSH):
   - Sempre que o usuário autorizar/aprovar o push, ANTES de executá-lo, é obrigatório:
-    1. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon físico, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
-    2. **Sincronização Obrigatória com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) ou commits web geraram alterações no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git merge origin/<branch>` ou rebase antes de prosseguir.
-    3. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
-    4. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env` / `.env.local`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
-    5. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
-    6. **Política de Retenção de Snapshots (Rolling Backups)**: Manter sempre no máximo os **5 snapshots mais recentes** em `backup-producao/`. Qualquer snapshot mais antigo que o 5º deve ser automaticamente excluído para evitar acúmulo de disco e rotação de credenciais.
-    7. **Prosseguimento**: Somente após a conclusão com sucesso da tag/rollback no GitHub e do backup local com a política de retenção aplicada, prosseguir com o push, deploy e atualizações gerais.
+    1. **Bateria de Testes e Validação de Não-Regressão**: Confirmar a aprovação de 100% dos testes técnicos e validações funcionais, garantindo certeza absoluta de que nada quebrou antes de qualquer build ou envio a produção.
+    2. **Checklist de Otimização de Buscas (SEO/GEO/AEO)**: Em projetos web/landing pages, auditar obrigatoriamente os itens da seção 8 (Sincronia DOM x Schema, Favicon físico, `sitemap.xml` com lastmod atualizado, `llms.txt` e crawlers de IA).
+    3. **Sincronização Obrigatória com Bots e CI/CD**: Executar obrigatoriamente `git fetch` para verificar se runners de CI/CD (GitHub Actions) ou commits web geraram alterações no remoto (`[skip ci]`). Caso existam commits à frente, aplicar `git merge origin/<branch>` ou rebase antes de prosseguir.
+    4. **Rollback e Tag Remota no GitHub**: Gerar a cópia/branch de rollback e a tag da versão ativa em produção diretamente no repositório do GitHub (ex: `rollback-prod-YYYYMMDD-HHmm`) e enviar para o remoto (`git push origin <tag>`).
+    5. **Cópia Local de Segurança com `.env`**: Gerar snapshot/cópia da versão na pasta local do projeto (ex: `backup-producao/YYYY-MM-DD/`), copiando todo o código-fonte, configurações de infraestrutura, schemas de banco e variáveis de ambiente (`.env` / `.env.local`), ignorando sumariamente `node_modules`, `.next`, caches, arquivos de mídia e logs pesados.
+    6. **Blindagem no `.gitignore`**: Assegurar obrigatoriamente que a pasta `backup-producao/` esteja registrada no `.gitignore` do projeto para que os snapshots locais nunca sejam enviados ao GitHub.
+    7. **Política de Retenção de Snapshots (Rolling Backups)**: Manter sempre no máximo os **5 snapshots mais recentes** em `backup-producao/`. Qualquer snapshot mais antigo que o 5º deve ser automaticamente excluído para evitar acúmulo de disco e rotação de credenciais.
+    8. **Prosseguimento**: Somente após a conclusão com sucesso de todos os testes, da tag/rollback no GitHub e do backup local com a política de retenção aplicada, prosseguir com o push, deploy e atualizações gerais.
 
 ## 7. Segurança de Dados, Segredos e Integridade do Sistema
 - GESTÃO DE SEGREDOS E `.env`: NUNCA versionar ou commitar arquivos `.env`, `.env.local`, `.env.production` ou chaves de API / credenciais privadas (Supabase, Firebase, Neon, Mercado Pago, etc.) no Git. Ao adicionar variáveis novas, registrar apenas a chave sem o valor em `.env.example`.
