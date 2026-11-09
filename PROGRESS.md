@@ -59,3 +59,16 @@
 ## Próximos Passos
 - [ ] Divulgar a v2.7 para a comunidade dev/vibecoders.
 - [ ] Adicionar exemplos práticos de `PROGRESS.md` para diferentes stacks (Android, React/Next.js, Python).
+
+### Sessão 2026-11-09 — Atualização para v3.2 (Síntese Cirúrgica < 24k Bytes & Blindagem de File Watcher no Antigravity IDE)
+- [x] **Diagnóstico e Resolução de Crash em Workspaces Híbridos/Monorepos (Zuun)**:
+  - Investigação de logs internos do Antigravity IDE (renderer.log e exthost.log), identificando travamento do Extension Host por sobrecarga do File Watcher em repositórios com mídias, vídeos, pacotes mobile (.apk, .aab) e arquivos compactados (.zip, .rar).
+  - Limpeza de cache residual de workspace em workspaceStorage.
+- [x] **Nova Diretriz na Seção 3 do GEMINI.md**:
+  - Incorporada a regra de Blindagem de Watcher e Arquivos Pesados no IDE: configuração global (settings.json) do Antigravity IDE com exclusão explícita no files.watcherExclude e search.exclude para extensões binárias (.zip, .rar, .7z, .apk, .aab, vídeos, .git/objects/**) e desativação de auto-build não supervisionado.
+- [x] **Síntese Cirúrgica e Respeito ao Teto de 24.000 Bytes**:
+  - Otimização do documento GEMINI.md de 33.572 para 21.095 caracteres (21.586 bytes UTF-8), eliminando o truncamento silencioso de 9.951 bytes imposto pelo motor Go do Antigravity e preservando 100% dos mandatos técnicos das 12 seções.
+- [x] **Sincronização Simultânea das 5 Instâncias Centrais**:
+  - C:\Users\TI\.gemini\config\rules\GEMINI.md e C:\Users\TI\.gemini\config\GEMINI.md
+  - C:\Users\TI\.gemini\config\rules\antigravity-optimization-rule\GEMINI.md
+  - F:\Documents\GitClone\GEMINI MD\GEMINI.md e F:\Documents\GitClone\GEMINI MD\rules\GEMINI.md
