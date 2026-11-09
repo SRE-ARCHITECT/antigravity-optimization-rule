@@ -22,6 +22,7 @@
 
 ## 3. Otimizações para Windows e Contexto Operacional
 - WINDOWS I/O: Ao buscar arquivos ou textos, limite a busca à pasta do projeto atual e utilize filtros de extensão específicos, evitando varrer pastas externas ou raízes de disco.
+- CANONICIDADE DE LETRA DE UNIDADE NO WINDOWS (DRIVE LETTER CASING): Comandos de terminal, scripts de build (Vite, Rollup, Webpack, Gradle) e referências de caminhos no Windows DEVEM utilizar obrigatoriamente letras de unidade em maiúsculo (ex: `C:\`, `F:\` e nunca `c:\` ou `f:\`). Discrepâncias de casing na letra do drive provocam falhas silenciosas de resolução em plugins de empacotamento, como `[vite:html-inline-proxy]` por incompatibilidade na chave de cache de proxy HTML/CSS inline.
 - POWERSHELL LIMPO E ROBUSTO: Evite encadear comandos shell pesados ou deixar processos contínuos (watchers/daemons) rodando em background no Windows.
 - EXECUÇÃO SEGURA NO TERMINAL: PROIBIDO disparar comandos de terminal com scripts inline multi-linha complexos via `python -c` ou `node -e`. Testes e validações devem ser gravados em arquivos temporários/scratch antes de sua execução para evitar travamentos de console e falhas de encoding (`cp1252`).
 - RESPEITO AO CONTEXTO E LOGS: Ignore arquivos de build, caches, binários e mapas (.map). Para arquivos de log (.log) locais, de repositórios ou servidores, inspecione apenas os trechos estritamente relevantes quando necessário para diagnosticar erros ou se solicitado pelo usuário.
