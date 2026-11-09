@@ -72,3 +72,14 @@
   - C:\Users\TI\.gemini\config\rules\GEMINI.md e C:\Users\TI\.gemini\config\GEMINI.md
   - C:\Users\TI\.gemini\config\rules\antigravity-optimization-rule\GEMINI.md
   - F:\Documents\GitClone\GEMINI MD\GEMINI.md e F:\Documents\GitClone\GEMINI MD\rules\GEMINI.md
+
+### Sessão 2026-11-09 (v3.3) — Blindagem de Daemons Java/Gradle e Canal Estável no IDE
+- [x] **Diagnóstico e Resolução de Travamento no Início do Antigravity IDE (Workspace Zuun / Capacitor Android)**:
+  - Identificada concorrência de daemons Java Language Server e Gradle Daemons inicializados por extensões (`redhat.java`, `vscjava.vscode-gradle`) em workspaces com Capacitor/Android, drenando CPU e I/O.
+  - Identificado loop de download recorrente do backend local do Antigravity causado pelo canal `geminicodeassist.updateChannel: "Insiders"`.
+- [x] **Aplicação Global nos `settings.json` (Antigravity IDE e VS Code)**:
+  - Java em modo leve (`java.server.launchMode: "LightWeight"`), Gradle bloqueado (`gradle.autoDetect: "off"`, `java.import.gradle.enabled: false`) e canal fixado em estável (`geminicodeassist.updateChannel: "Default"` com `extensions.autoUpdate: false`).
+- [x] **Nova Diretriz na Seção 3 do GEMINI.md**:
+  - Incorporada a regra de `BLINDAGEM DE DAEMONS JAVA/GRADLE E CANAL ESTÁVEL NO IDE` mantendo o arquivo dentro do teto seguro (22.224 bytes).
+- [x] **Sincronização Simultânea das 5 Instâncias Centrais e Tag Remota no GitHub**:
+  - `rollback-prod-20261109-1330` enviada para `https://github.com/SRE-ARCHITECT/antigravity-optimization-rule`.
