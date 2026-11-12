@@ -2,6 +2,11 @@
 
 ## Últimas Alterações Realizadas
 
+### Sessão 2026-11-12 — Atualização para v3.3 (Atualização Mandatória Pré-Push da Documentação Geral)
+- [x] Inclusão de diretriz mandatória na **Seção 5 (Continuidade de Sessões e Documentação Obrigatória do Projeto)** e no item 2 da **Seção 6 (Protocolo de Segurança: Ponto de Restauração e Backup de Produção)**:
+  - **Atualização Mandatória da Documentação Geral Pré-Push:** Antes de sequer sugerir ou aprovar tags, snapshots ou pushs para repositórios remotos, é OBRIGATÓRIO atualizar completamente todos os documentos canônicos da raiz (`PROGRESS.md`, `BLUEPRINT.md`, `PRD.md`, `AGENTS.md` e `README.md`) refletindo entregas, novas rotas/APIs, crons, estado atual e próximos passos. É expressamente PROIBIDO fazer push com documentação desatualizada.
+- [x] Sincronização quádrupla obrigatória realizada entre `.gemini/config/`, repositório oficial de governança `antigravity-optimization-rule` e espelhos locais em `F:\Documents\GitClone\GEMINI MD`.
+
 ### Sessão 2026-11-11 — Atualização para v3.2 (Isolamento de Homologação Zero-Touch e Renovação Resiliente de Assinaturas)
 - [x] Inclusão de diretrizes consolidadas na **Seção 7 (Segurança de Dados, Segredos e Integridade do Sistema)**:
   - **Isolamento de Homologação (Zero-Touch em Produção):** Proibição estrita de testes de escrita, carga ou migração direta no banco de produção (`main`). Obrigatório uso de Neon Branching (`dev`/`staging`) ou banco local no `.env.local`. Proibição de testes manuais com dados fictícios contra webhooks de produção. Modificações devem nascer em branches gerando *Preview Deployments* isolados antes do merge na produção.

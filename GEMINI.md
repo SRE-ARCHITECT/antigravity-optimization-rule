@@ -40,7 +40,7 @@
 - TIMEOUTS DEFENSIVOS EM APIS SERVERLESS E INTEGRAÇÕES: Chamadas externas a serviços de terceiros, APIs governamentais (PNCP, Compras.gov, Receita Federal) disparadas de Edge/Serverless Functions devem implementar timeout defensivo estrito de 8 segundos (ex: `AbortSignal.timeout(8000)`), evitando timeout de 504 Gateway na plataforma.
 
 ## 5. Continuidade de Sessões e Documentação Obrigatória do Projeto
-- Manter atualizadas as documentações na raiz de cada projeto:
+- Manter atualizadas as documentações na raiz de cada projeto antes de qualquer push:
   - `BLUEPRINT.md`: Arquitetura, fluxo de dados, estrutura de diretórios e integrações.
   - `README.md`: Apresentação, instalação/execução e stack. No final, incluir créditos obrigatórios:
     - Dev: [webappdesigner.com.br](https://webappdesigner.com.br)
@@ -48,20 +48,21 @@
   - `PRD.md`: Requisitos, escopo, regras de negócio e funcionalidades.
   - `AGENTS.md`: Guia de contexto para agentes de IA, convenções, comandos e variáveis.
   - `PROGRESS.md`: Diário de bordo contendo: O que foi feito, Estado atual e Próximos passos.
-- Em projetos com `PROGRESS.md`, consulte-o ao iniciar e continue o fluxo de onde parou.
+- Em projetos com `PROGRESS.md`, consulte-o ao iniciar e continue o fluxo de onde parou. OBRIGATÓRIO atualizar todos os 5 documentos canônicos antes de qualquer commit ou push para os repositórios remotos.
 
 ## 6. Protocolo de Segurança: Ponto de Restauração e Backup de Produção (Obrigatório Pré-Push)
 - TESTES OBRIGATÓRIOS PRÉ-SUGESTÃO (GATE DE NÃO-REGRESSÃO):
   - Executar bateria completa de testes e validações técnicas (tipagem estática, sintaxe, integridade de componentes, scripts funcionais) ANTES de sequer sugerir ao usuário backup, commit, push, build ou deploy.
 - FLUXO OBRIGATÓRIO AO APROVAR PUSH:
   1. **Validação de Não-Regressão**: Confirmar 100% de aprovação nos testes técnicos.
-  2. **Checklist SEO/GEO/AEO**: Em projetos web, auditar itens da seção 8 (Sincronia DOM x Schema, Favicon físico, `sitemap.xml`, `llms.txt`).
-  3. **Sincronização com CI/CD**: Executar `git fetch` para verificar se runners de CI/CD geraram commits (`[skip ci]`). Se houver, aplicar `git merge origin/<branch>` ou rebase.
-  4. **Rollback e Tag Remota no GitHub**: Gerar tag de rollback da versão ativa (`rollback-prod-YYYYMMDD-HHmm`) e enviar ao remoto (`git push origin <tag>`).
-  5. **Cópia Local de Segurança com `.env`**: Gerar snapshot em `backup-producao/YYYY-MM-DD/` com código, infra, schemas e variáveis (`.env` / `.env.local`), ignorando `node_modules`, `.next`, caches, mídias e logs pesados.
-  6. **Blindagem no `.gitignore`**: Garantir que `backup-producao/` esteja no `.gitignore`.
-  7. **Política de Retenção (Rolling Backups)**: Manter no máximo os **5 snapshots mais recentes** em `backup-producao/`, excluindo automaticamente os mais antigos.
-  8. **Prosseguimento**: Somente após os passos acima, executar o push e deploy aprovados.
+  2. **Atualização Mandatória da Documentação Geral**: Antes de gerar tag, snapshot ou push, atualizar OBRIGATORIAMENTE todos os documentos canônicos (`PROGRESS.md`, `BLUEPRINT.md`, `PRD.md`, `AGENTS.md` e `README.md`) refletindo entregas, novas rotas/APIs, crons, estado atual e próximos passos. PROIBIDO fazer push com documentação desatualizada.
+  3. **Checklist SEO/GEO/AEO**: Em projetos web, auditar itens da seção 8 (Sincronia DOM x Schema, Favicon físico, `sitemap.xml`, `llms.txt`).
+  4. **Sincronização com CI/CD**: Executar `git fetch` para verificar se runners de CI/CD geraram commits (`[skip ci]`). Se houver, aplicar `git merge origin/<branch>` ou rebase.
+  5. **Rollback e Tag Remota no GitHub**: Gerar tag de rollback da versão ativa (`rollback-prod-YYYYMMDD-HHmm`) e enviar ao remoto (`git push origin <tag>`).
+  6. **Cópia Local de Segurança com `.env`**: Gerar snapshot em `backup-producao/YYYY-MM-DD/` com código, infra, schemas e variáveis (`.env` / `.env.local`), ignorando `node_modules`, `.next`, caches, mídias e logs pesados.
+  7. **Blindagem no `.gitignore`**: Garantir que `backup-producao/` esteja no `.gitignore`.
+  8. **Política de Retenção (Rolling Backups)**: Manter no máximo os **5 snapshots mais recentes** em `backup-producao/`, excluindo automaticamente os mais antigos.
+  9. **Prosseguimento**: Somente após os passos acima, executar o push e deploy aprovados.
 
 ## 7. Segurança de Dados, Segredos e Integridade do Sistema
 - GESTÃO DE SEGREDOS E `.env`: NUNCA versionar arquivos `.env`, `.env.local` ou credenciais privadas. Registrar novas chaves apenas em `.env.example`.
