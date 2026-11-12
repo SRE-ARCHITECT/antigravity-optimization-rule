@@ -2,6 +2,12 @@
 
 ## Últimas Alterações Realizadas
 
+### Sessão 2026-11-11 — Atualização para v3.2 (Isolamento de Homologação Zero-Touch e Renovação Resiliente de Assinaturas)
+- [x] Inclusão de diretrizes consolidadas na **Seção 7 (Segurança de Dados, Segredos e Integridade do Sistema)**:
+  - **Isolamento de Homologação (Zero-Touch em Produção):** Proibição estrita de testes de escrita, carga ou migração direta no banco de produção (`main`). Obrigatório uso de Neon Branching (`dev`/`staging`) ou banco local no `.env.local`. Proibição de testes manuais com dados fictícios contra webhooks de produção. Modificações devem nascer em branches gerando *Preview Deployments* isolados antes do merge na produção.
+  - **Renovação Resiliente de Assinaturas (Fórmula Determinística):** Em qualquer webhook ou rotina financeira (Cakto, Mercado Pago, Stripe, Asaas), o cálculo de expiração obrigatoriamente adota `base = max(expires_at, data_pagamento)` e `novo_vencimento = base + ciclo_dias`, eliminando vencimentos residuais no passado para usuários que pagam após o prazo. Ativação direta de licenças caso o usuário cadastrado compre via link direto, proibindo descarte como órfão.
+- [x] Sincronização quádrupla obrigatória realizada entre `.gemini/config/`, repositório oficial de governança e espelhos locais.
+
 ### Sessão 2026-10-18 - Atualização para v3.0 (Copywriting de IA, Sanitização Universal de Links e Sincronização Mandatória)
 - [x] Inclusão da **Seção 12: Copywriting de IA, Automação de Mídias Sociais e Higienização de Links (LinkedIn, X e Buffer)**:
   - **Higienização Defensiva de Links:** Sanitizador determinístico via Regex (`sanitize_social_text`) desmontando links Markdown (`[texto](url)`, `[[url]]`), removendo colchetes/parênteses em URLs e deduplicando URLs idênticas, eliminando 100% de links quebrados nas timelines.
