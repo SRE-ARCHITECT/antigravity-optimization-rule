@@ -2,6 +2,13 @@
 
 ## Últimas Alterações Realizadas
 
+### Sessão 2026-11-20 — Atualização para v3.4 (Padrão Canônico AdMob Android Híbrido, Compose e WebView)
+- [x] Inclusão de diretriz mandatória na **Seção 11 (Otimização Nativa Mobile e Gestão de Memória em Android)**:
+  - **PADRÃO CANÔNICO ADMOB (CAPACITOR, COMPOSE E WEBVIEW):** Permissão `com.google.android.gms.permission.AD_ID` obrigatória (Google Play Android 13+). Em Capacitor: `registerPlugin(AdMob.class)` pré-`super.onCreate()`, polling JS de 6s (`waitForPluginAndInit`), CSS dinâmico `body.has-ad-banner` e `hideBanner()` em modais contra cliques acidentais. Em Jetpack Compose: `BannerAdView` alocado no slot `bottomBar` do `Scaffold` (respiro nativo via `innerPadding`) e pré-carregamento assíncrono contínuo de intersticiais (`preloadInterstitial`). Em WebView clássica: `layout_above` no layout XML nativo. Zero blocos de teste em produção (`isTesting: false`).
+  - Criação da **Skill Canônica** `admob_android_standard` (`C:\Users\TI\.gemini\config\skills\admob_android_standard\SKILL.md`) contendo código de produção pronto para injeção e catálogo unificado de IDs oficiais da conta publisher (`ca-app-pub-XXXXXXXXXXXXXXXX`).
+  - Micro-otimização cirúrgica no `GEMINI.md` mantendo o tamanho em **23.845 bytes** (estritamente abaixo do teto de 24.000 bytes do Antigravity).
+- [x] Sincronização quádrupla obrigatória realizada entre `.gemini/config/`, repositório oficial de governança `antigravity-optimization-rule` e espelhos locais em `F:\Documents\GitClone\GEMINI MD`.
+
 ### Sessão 2026-11-12 — Atualização para v3.3 (Atualização Mandatória Pré-Push da Documentação Geral)
 - [x] Inclusão de diretriz mandatória na **Seção 5 (Continuidade de Sessões e Documentação Obrigatória do Projeto)** e no item 2 da **Seção 6 (Protocolo de Segurança: Ponto de Restauração e Backup de Produção)**:
   - **Atualização Mandatória da Documentação Geral Pré-Push:** Antes de sequer sugerir ou aprovar tags, snapshots ou pushs para repositórios remotos, é OBRIGATÓRIO atualizar completamente todos os documentos canônicos da raiz (`PROGRESS.md`, `BLUEPRINT.md`, `PRD.md`, `AGENTS.md` e `README.md`) refletindo entregas, novas rotas/APIs, crons, estado atual e próximos passos. É expressamente PROIBIDO fazer push com documentação desatualizada.
